@@ -19,7 +19,7 @@ public class RoomsDAOImpl implements RoomsDAO {
         }catch (DataAccessException dae){
             throw new DBException("[ERROR:DAE] getRoomsList() ", dae);
         }catch (NumberFormatException nfe){
-            throw new DBException("[ERROR:DAE] getRoomsList() ", nfe);
+            throw new DBException("[ERROR:NFE] getRoomsList() ", nfe);
         }catch (Exception e){
             throw new DBException("[ERROR:E] getRoomsList() ",e);
         }

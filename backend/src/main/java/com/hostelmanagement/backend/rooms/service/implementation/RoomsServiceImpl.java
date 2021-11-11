@@ -18,9 +18,9 @@ public class RoomsServiceImpl implements RoomsService {
     public List<RoomDTO> getRoomsList() throws ServiceException {
         try{
             return roomsDAO.getRoomsList();
-        }catch (ServiceException se){
+        }/*catch (ServiceException se){
             throw new ServiceException("[ERROR:SE] getRoomsList() ",se);
-        }catch (Exception e){
+        }*/catch (Exception e){
             throw new ServiceException("[ERROR:E] getRoomsList() ",e);
         }
     }
