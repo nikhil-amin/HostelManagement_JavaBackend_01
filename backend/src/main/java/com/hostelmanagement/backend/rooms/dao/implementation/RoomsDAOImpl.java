@@ -15,7 +15,7 @@ public class RoomsDAOImpl implements RoomsDAO {
     public List<RoomDTO> getRoomsList() throws DBException {
         List<RoomDTO> rooms = new ArrayList<RoomDTO>();
         try{
-
+            
         }catch (DataAccessException dae){
             throw new DBException("[ERROR:DAE] getRoomsList() ", dae);
         }catch (NumberFormatException nfe){
