@@ -3,7 +3,6 @@ package com.hostelmanagement.backend.util;
 import com.hostelmanagement.backend.exception.DBException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.util.LinkedCaseInsensitiveMap;
 import org.springframework.web.util.HtmlUtils;
 
 import java.text.Normalizer;
