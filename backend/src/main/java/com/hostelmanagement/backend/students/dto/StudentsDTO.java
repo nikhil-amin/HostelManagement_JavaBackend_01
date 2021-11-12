@@ -1,4 +1,4 @@
-package com.hostelmanagement.backend.rooms.dto;
+package com.hostelmanagement.backend.students.dto;
 
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
-package com.hostelmanagement.backend.rooms.dao;
+package com.hostelmanagement.backend.students.dao;
 
 import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.exception.ServiceException;
-import com.hostelmanagement.backend.rooms.dto.StudentsDTO;
+import com.hostelmanagement.backend.students.dto.StudentsDTO;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.hostelmanagement.backend.rooms.controller;
+package com.hostelmanagement.backend.students.controller;
 
 import com.hostelmanagement.backend.exception.ServiceException;
-import com.hostelmanagement.backend.rooms.dto.StudentsDTO;
-import com.hostelmanagement.backend.rooms.service.StudentsService;
+import com.hostelmanagement.backend.students.dto.StudentsDTO;
+import com.hostelmanagement.backend.students.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

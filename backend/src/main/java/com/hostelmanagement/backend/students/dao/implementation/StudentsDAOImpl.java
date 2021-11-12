@@ -1,9 +1,9 @@
-package com.hostelmanagement.backend.rooms.dao.implementation;
+package com.hostelmanagement.backend.students.dao.implementation;
 
 import com.hostelmanagement.backend.exception.DBException;
-import com.hostelmanagement.backend.rooms.dao.StudentsDAO;
-import com.hostelmanagement.backend.rooms.dao.constants.QueryConstants;
-import com.hostelmanagement.backend.rooms.dto.StudentsDTO;
+import com.hostelmanagement.backend.students.dao.StudentsDAO;
+import com.hostelmanagement.backend.students.dao.constants.QueryConstants;
+import com.hostelmanagement.backend.students.dto.StudentsDTO;
 import com.hostelmanagement.backend.util.LiteralConstants;
 import com.hostelmanagement.backend.util.ParsingUtil;
 import org.springframework.dao.DataAccessException;

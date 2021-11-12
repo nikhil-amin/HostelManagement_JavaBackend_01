@@ -1,10 +1,10 @@
-package com.hostelmanagement.backend.rooms.service.implementation;
+package com.hostelmanagement.backend.students.service.implementation;
 
 import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.exception.ServiceException;
-import com.hostelmanagement.backend.rooms.dao.StudentsDAO;
-import com.hostelmanagement.backend.rooms.dto.StudentsDTO;
-import com.hostelmanagement.backend.rooms.service.StudentsService;
+import com.hostelmanagement.backend.students.dao.StudentsDAO;
+import com.hostelmanagement.backend.students.dto.StudentsDTO;
+import com.hostelmanagement.backend.students.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
