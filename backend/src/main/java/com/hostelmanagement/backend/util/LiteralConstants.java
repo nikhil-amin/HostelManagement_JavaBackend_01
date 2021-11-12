@@ -18,4 +18,13 @@ public class LiteralConstants {
     public final static String STUDENT_PHONE = "student_phone";
     public final static String STUDENT_EMAIL = "student_email";
     public final static String MESS_FACILITY_OPTED = "mess_facility_opted";
+
+    //mess
+    public final static String ITEM_ID = "item_id";
+    public final static String ITEM_NAME = "item_name";
+    public final static String ITEM_QUANTITY = "item_quantity";
+    public final static String TOTAL_PRICE = "total_price";
+    public final static String MONTH_NAME = "month_name";
+    public final static String YEAR = "year";
+
 }
