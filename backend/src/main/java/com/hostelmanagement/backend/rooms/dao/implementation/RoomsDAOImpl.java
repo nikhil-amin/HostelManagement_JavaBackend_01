@@ -4,6 +4,7 @@ import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.rooms.dao.RoomsDAO;
 import com.hostelmanagement.backend.rooms.dao.constants.QueryConstants;
 import com.hostelmanagement.backend.rooms.dto.RoomDTO;
+import com.hostelmanagement.backend.util.LiteralConstants;
 import com.hostelmanagement.backend.util.ParsingUtil;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,12 +31,12 @@ public class RoomsDAOImpl implements RoomsDAO {
 
             for(Map<String, String> row : rows){
                 RoomDTO room = new RoomDTO();
-                room.setRoomNumber(Integer.parseInt(row.get("room_number")));
-                room.setRoomType(row.get("room_type"));
-                room.setTotalNumberOfBeds(Integer.parseInt(row.get("total_number_of_beds")));
-                room.setOccupiedNumberOfBeds(Integer.parseInt(row.get("occupied_number_of_beds")));
-                room.setRoomPrice(Integer.parseInt(row.get("room_price")));
-                room.setRoomDescription(row.get("room_description"));
+                room.setRoomNumber(Integer.parseInt(row.get(LiteralConstants.ROOM_NUMBER)));
+                room.setRoomType(row.get(LiteralConstants.ROOM_TYPE));
+                room.setTotalNumberOfBeds(Integer.parseInt(row.get(LiteralConstants.TOTAL_NUMBER_OF_BEDS)));
+                room.setOccupiedNumberOfBeds(Integer.parseInt(row.get(LiteralConstants.OCCUPIED_NUMBER_OF_BEDS)));
+                room.setRoomPrice(Integer.parseInt(row.get(LiteralConstants.ROOM_PRICE)));
+                room.setRoomDescription(row.get(LiteralConstants.ROOM_DESCRIPTION));
                 rooms.add(room);
             }
         }catch (DataAccessException dae){
