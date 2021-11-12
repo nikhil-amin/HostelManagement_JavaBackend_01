@@ -18,10 +18,26 @@ public class RoomsDAOImpl implements RoomsDAO {
 
     private JdbcTemplate jdbcTemplate;
 
+    public RoomsDAOImpl(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
     public List<RoomDTO> getRoomsList() throws DBException {
         List<RoomDTO> rooms = new ArrayList<RoomDTO>();
         try{
-            List<Map<String, String>> output = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOMS_LIST);
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOMS_LIST);
+
+            for(Map<String, String> row : rows){
+                RoomDTO room = new RoomDTO();
+                room.setRoomNumber(Integer.parseInt(row.get("room_number")));
+                room.setRoomType(row.get("room_type"));
+                room.setTotalNumberOfBeds(Integer.parseInt(row.get("total_number_of_beds")));
+                room.setOccupiedNumberOfBeds(Integer.parseInt(row.get("occupied_number_of_beds")));
+                room.setRoomPrice(Integer.parseInt(row.get("room_price")));
+                room.setRoomDescription(row.get("room_description"));
+                rooms.add(room);
+            }
         }catch (DataAccessException dae){
             throw new DBException("[ERROR:DAE] getRoomsList() ", dae);
         }catch (NumberFormatException nfe){

@@ -1,5 +1,6 @@
 package com.hostelmanagement.backend.rooms.service.implementation;
 
+import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.exception.ServiceException;
 import com.hostelmanagement.backend.rooms.dao.RoomsDAO;
 import com.hostelmanagement.backend.rooms.dto.RoomDTO;
@@ -15,12 +16,13 @@ public class RoomsServiceImpl implements RoomsService {
     @Autowired
     private RoomsDAO roomsDAO;
 
+    @Override
     public List<RoomDTO> getRoomsList() throws ServiceException {
         try{
             return roomsDAO.getRoomsList();
-        }/*catch (ServiceException se){
-            throw new ServiceException("[ERROR:SE] getRoomsList() ",se);
-        }*/catch (Exception e){
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] getRoomsList() ",de);
+        }catch (Exception e){
             throw new ServiceException("[ERROR:E] getRoomsList() ",e);
         }
     }

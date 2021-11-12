@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ParsingUtil {
 
-    //execute query and return List<Map<String, String>>
+    //execute query with arguments and return List<Map<String, String>>
     public static List<Map<String, String>> queryForList(
             JdbcTemplate jdbcTemplate, final String query, final Object... args)
             throws DBException {
@@ -25,14 +25,43 @@ public class ParsingUtil {
             for(Map<String, Object> m : jdbcTemplate.queryForList(query, args)){
                 tempList.add(convertMapObjectToMapString(m));
             }
-            for(Map<String, String> r : tempList){
-                Map<String, String> c = new LinkedCaseInsensitiveHashMap<String, String>();
-                for(Map.Entry<String, String> e : r.entrySet()){
-                    c.put(validateString(e.getKey()), validateString(e.getValue()));
+            if(!tempList.isEmpty()){
+                for(Map<String, String> r : tempList){
+                    Map<String, String> c = new LinkedCaseInsensitiveHashMap<String, String>();
+                    for(Map.Entry<String, String> e : r.entrySet()){
+                        c.put(validateString(e.getKey()), validateString(e.getValue()));
+                    }
+                    finalList.add(c);
                 }
-                finalList.add(c);
             }
 
+        }catch (DataAccessException dae) {
+            throw new DBException("[ERROR] queryForList ", dae);
+        }
+        return finalList;
+    }
+
+    //execute query without arguments and return List<Map<String, String>>
+    public static List<Map<String, String>> queryForList(
+            JdbcTemplate jdbcTemplate, String query)
+            throws DBException {
+        List<Map<String, String>> tempList = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> finalList = new ArrayList<Map<String, String>>();
+
+        try{
+            for(Map<String, Object> m : jdbcTemplate.queryForList(query)){
+                tempList.add(convertMapObjectToMapString(m));
+            }
+
+            if(!tempList.isEmpty()){
+                for(Map<String, String> r : tempList){
+                    Map<String, String> c = new LinkedCaseInsensitiveHashMap<String, String>();
+                    for(Map.Entry<String, String> e : r.entrySet()){
+                        c.put(validateString(e.getKey()), validateString(e.getValue()));
+                    }
+                    finalList.add(c);
+                }
+            }
         }catch (DataAccessException dae) {
             throw new DBException("[ERROR] queryForList ", dae);
         }

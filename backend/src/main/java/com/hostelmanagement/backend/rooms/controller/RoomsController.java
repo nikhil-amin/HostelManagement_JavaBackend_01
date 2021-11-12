@@ -19,11 +19,10 @@ public class RoomsController {
     @RequestMapping(value="/rooms/getRoomsList", method= RequestMethod.GET, produces = "application/json")
     public List<RoomDTO> getRoomsList() throws ServiceException {
         try{
-            System.out.println(roomsService.getRoomsList());
             return roomsService.getRoomsList();
-        }/*catch (ServiceException se){
+        }catch (ServiceException se){
             throw new ServiceException("[ERROR:SE] getRoomsList() ",se);
-        }*/catch (Exception e){
+        }catch (Exception e){
             throw new ServiceException("[ERROR:E] getRoomsList() ",e);
         }
     }
