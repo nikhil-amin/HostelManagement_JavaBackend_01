@@ -5,12 +5,21 @@ import java.io.Serializable;
 public class RoomDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private int roomID;
     private int roomNumber;
     private String roomType;
     private int totalNumberOfBeds;
     private int occupiedNumberOfBeds;
     private int roomPrice;
     private String roomDescription;
+
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
+    }
 
     public int getRoomNumber() {
         return roomNumber;
