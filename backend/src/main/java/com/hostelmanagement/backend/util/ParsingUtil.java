@@ -1,6 +1,10 @@
 package com.hostelmanagement.backend.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.json.JsonSanitizer;
 import com.hostelmanagement.backend.exception.DBException;
+import org.json.JSONArray;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.util.HtmlUtils;
@@ -101,5 +105,32 @@ public class ParsingUtil {
         string = HtmlUtils.htmlUnescape(string);
 
         return string;
+    }
+
+    public static List<Object> convertJsonStringToList(String json, Class<?> className) throws JsonProcessingException {
+
+        List<Object> list = new ArrayList<Object>();
+        json = validateString(Normalizer.normalize(json, Normalizer.Form.NFKC));
+        StringBuilder jsonString = new StringBuilder();
+
+        if(!json.startsWith("[")){
+            jsonString.append("[");
+        }
+        jsonString.append(json);
+        if(!json.endsWith("]")){
+            jsonString.append("]");
+        }
+
+        JSONArray jsonArray = new JSONArray(JsonSanitizer.sanitize(jsonString.toString()));
+
+        if(jsonArray.length() != 0){
+            for(int i=0; i<jsonArray.length(); i++){
+                ObjectMapper mapper = new ObjectMapper();
+                Object object = mapper.readValue(jsonArray.get(i).toString(), className);
+                list.add(object);
+            }
+        }
+
+        return list;
     }
 }
