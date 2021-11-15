@@ -7,9 +7,12 @@ import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.util.LiteralConstants;
 import com.hostelmanagement.backend.util.ParsingUtil;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,5 +50,35 @@ public class RoomsDAOImpl implements RoomsDAO {
             throw new DBException("[ERROR:E] getRoomsList() ",e);
         }
         return rooms;
+    }
+
+    @Override
+    public void insertRooms(List<RoomDTO> rooms) throws DBException {
+        try{
+
+            jdbcTemplate.batchUpdate(QueryConstants.INSERT_ROOMS, new BatchPreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps, int i) throws SQLException {
+                    ps.setInt(1, rooms.get(i).getRoomNumber());
+                    ps.setString(2, rooms.get(i).getRoomType());
+                    ps.setInt(3, rooms.get(i).getTotalNumberOfBeds());
+                    ps.setInt(4, rooms.get(i).getOccupiedNumberOfBeds());
+                    ps.setInt(5, rooms.get(i).getRoomPrice());
+                    ps.setString(6, rooms.get(i).getRoomDescription());
+                }
+
+                @Override
+                public int getBatchSize() {
+                    return rooms.size();
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] insertRooms() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] insertRooms() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] insertRooms() ",e);
+        }
     }
 }
