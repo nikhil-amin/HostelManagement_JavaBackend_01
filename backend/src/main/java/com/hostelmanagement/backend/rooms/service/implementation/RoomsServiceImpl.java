@@ -34,7 +34,18 @@ public class RoomsServiceImpl implements RoomsService {
         }catch (DBException de){
             throw new ServiceException("[ERROR:SE] insertRooms()", de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] insertRooms() ",e);
+            throw new ServiceException("[ERROR:E] insertRooms() ", e);
+        }
+    }
+
+    @Override
+    public void insertRoom(RoomDTO room) throws ServiceException {
+        try{
+            roomsDAO.insertRoom(room);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] insertRoom()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] insertRoom() ", e);
         }
     }
 }

@@ -9,5 +9,7 @@ public interface RoomsDAO {
 
     public List<RoomDTO> getRoomsList() throws DBException;
 
-    public void insertRooms(List<RoomDTO> rooms) throws DBException;;
+    public void insertRooms(List<RoomDTO> rooms) throws DBException;
+
+    public void insertRoom(RoomDTO room) throws DBException;
 }

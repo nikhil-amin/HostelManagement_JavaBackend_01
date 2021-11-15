@@ -9,6 +9,7 @@ import com.hostelmanagement.backend.util.ParsingUtil;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -70,6 +71,30 @@ public class RoomsDAOImpl implements RoomsDAO {
                 @Override
                 public int getBatchSize() {
                     return rooms.size();
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] insertRooms() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] insertRooms() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] insertRooms() ",e);
+        }
+    }
+
+    @Override
+    public void insertRoom(RoomDTO room) throws DBException {
+        try{
+            jdbcTemplate.update(QueryConstants.INSERT_ROOMS, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setInt(1, room.getRoomNumber());
+                    ps.setString(2, room.getRoomType());
+                    ps.setInt(3, room.getTotalNumberOfBeds());
+                    ps.setInt(4, room.getOccupiedNumberOfBeds());
+                    ps.setInt(5, room.getRoomPrice());
+                    ps.setString(6, room.getRoomDescription());
                 }
             });
 

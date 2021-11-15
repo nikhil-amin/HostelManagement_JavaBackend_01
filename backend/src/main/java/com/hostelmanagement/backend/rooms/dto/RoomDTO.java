@@ -13,6 +13,18 @@ public class RoomDTO implements Serializable {
     private int roomPrice;
     private String roomDescription;
 
+    public RoomDTO() {
+    }
+
+    public RoomDTO(int roomNumber, String roomType, int totalNumberOfBeds, int occupiedNumberOfBeds, int roomPrice, String roomDescription) {
+        this.roomNumber = roomNumber;
+        this.roomType = roomType;
+        this.totalNumberOfBeds = totalNumberOfBeds;
+        this.occupiedNumberOfBeds = occupiedNumberOfBeds;
+        this.roomPrice = roomPrice;
+        this.roomDescription = roomDescription;
+    }
+
     public int getRoomID() {
         return roomID;
     }

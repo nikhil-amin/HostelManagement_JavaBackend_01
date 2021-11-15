@@ -10,4 +10,6 @@ public interface RoomsService {
     public List<RoomDTO> getRoomsList() throws ServiceException;
 
     public void insertRooms(List<RoomDTO> rooms) throws ServiceException;
+
+    public void insertRoom(RoomDTO room) throws ServiceException;
 }
