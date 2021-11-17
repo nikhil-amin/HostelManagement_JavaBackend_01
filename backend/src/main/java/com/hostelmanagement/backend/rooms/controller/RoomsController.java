@@ -115,4 +115,17 @@ public class RoomsController {
             throw new ServiceException("[ERROR:E] deleteRoomByRoomID() ", e);
         }
     }
+
+    @RequestMapping(value="/rooms/deleteAllRooms", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAllRooms() throws ServiceException {
+        try{
+            roomsService.deleteAllRooms();
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] deleteAllRooms() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteAllRooms() ", e);
+        }
+    }
 }

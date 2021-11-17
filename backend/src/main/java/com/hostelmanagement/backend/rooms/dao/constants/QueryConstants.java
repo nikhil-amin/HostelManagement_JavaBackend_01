@@ -14,4 +14,5 @@ public class QueryConstants {
 
     public static final String DELETE_ROOM = "DELETE FROM rooms WHERE room_id = ?";
 
+    public static final String DELETE_ALL_ROOMS = "TRUNCATE TABLE rooms CASCADE";
 }

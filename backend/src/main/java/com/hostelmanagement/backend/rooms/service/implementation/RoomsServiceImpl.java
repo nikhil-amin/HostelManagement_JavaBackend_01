@@ -81,4 +81,15 @@ public class RoomsServiceImpl implements RoomsService {
             throw new ServiceException("[ERROR:E] deleteRoomByRoomID() ", e);
         }
     }
+
+    @Override
+    public void deleteAllRooms() throws ServiceException {
+        try{
+            roomsDAO.deleteAllRooms();
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] deleteAllRooms()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteAllRooms() ", e);
+        }
+    }
 }

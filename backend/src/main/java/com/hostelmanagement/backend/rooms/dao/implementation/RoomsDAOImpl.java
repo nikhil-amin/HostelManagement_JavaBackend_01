@@ -184,4 +184,19 @@ public class RoomsDAOImpl implements RoomsDAO {
             throw new DBException("[ERROR:E] deleteRoomByRoomID() ",e);
         }
     }
+
+    @Override
+    public void deleteAllRooms() throws DBException {
+        try{
+
+            jdbcTemplate.update(QueryConstants.DELETE_ALL_ROOMS);
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] deleteAllRooms() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] deleteAllRooms() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] deleteAllRooms() ",e);
+        }
+    }
 }
