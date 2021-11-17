@@ -17,13 +17,13 @@ public class RoomsServiceImpl implements RoomsService {
     private RoomsDAO roomsDAO;
 
     @Override
-    public List<RoomDTO> getRoomsList() throws ServiceException {
+    public List<RoomDTO> getRooms() throws ServiceException {
         try{
-            return roomsDAO.getRoomsList();
+            return roomsDAO.getRooms();
         }catch (DBException de){
-            throw new ServiceException("[ERROR:SE] getRoomsList() ",de);
+            throw new ServiceException("[ERROR:SE] getRooms() ",de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getRoomsList() ",e);
+            throw new ServiceException("[ERROR:E] getRooms() ",e);
         }
     }
 

@@ -28,10 +28,10 @@ public class RoomsDAOImpl implements RoomsDAO {
     }
 
     @Override
-    public List<RoomDTO> getRoomsList() throws DBException {
+    public List<RoomDTO> getRooms() throws DBException {
         List<RoomDTO> rooms = new ArrayList<RoomDTO>();
         try{
-            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOMS_LIST);
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOMS);
 
             for(Map<String, String> row : rows){
                 RoomDTO room = new RoomDTO();
@@ -44,11 +44,11 @@ public class RoomsDAOImpl implements RoomsDAO {
                 rooms.add(room);
             }
         }catch (DataAccessException dae){
-            throw new DBException("[ERROR:DAE] getRoomsList() ", dae);
+            throw new DBException("[ERROR:DAE] getRooms() ", dae);
         }catch (NumberFormatException nfe){
-            throw new DBException("[ERROR:NFE] getRoomsList() ", nfe);
+            throw new DBException("[ERROR:NFE] getRooms() ", nfe);
         }catch (Exception e){
-            throw new DBException("[ERROR:E] getRoomsList() ",e);
+            throw new DBException("[ERROR:E] getRooms() ",e);
         }
         return rooms;
     }
@@ -57,7 +57,7 @@ public class RoomsDAOImpl implements RoomsDAO {
     public void insertRooms(List<RoomDTO> rooms) throws DBException {
         try{
 
-            jdbcTemplate.batchUpdate(QueryConstants.INSERT_ROOMS, new BatchPreparedStatementSetter() {
+            jdbcTemplate.batchUpdate(QueryConstants.INSERT_ROOM, new BatchPreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     ps.setInt(1, rooms.get(i).getRoomNumber());
@@ -86,7 +86,7 @@ public class RoomsDAOImpl implements RoomsDAO {
     @Override
     public void insertRoom(RoomDTO room) throws DBException {
         try{
-            jdbcTemplate.update(QueryConstants.INSERT_ROOMS, new PreparedStatementSetter() {
+            jdbcTemplate.update(QueryConstants.INSERT_ROOM, new PreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps) throws SQLException {
                     ps.setInt(1, room.getRoomNumber());
@@ -99,11 +99,11 @@ public class RoomsDAOImpl implements RoomsDAO {
             });
 
         }catch (DataAccessException dae){
-            throw new DBException("[ERROR:DAE] insertRooms() ", dae);
+            throw new DBException("[ERROR:DAE] insertRoom() ", dae);
         }catch (NumberFormatException nfe){
-            throw new DBException("[ERROR:NFE] insertRooms() ", nfe);
+            throw new DBException("[ERROR:NFE] insertRoom() ", nfe);
         }catch (Exception e){
-            throw new DBException("[ERROR:E] insertRooms() ",e);
+            throw new DBException("[ERROR:E] insertRoom() ",e);
         }
     }
 }

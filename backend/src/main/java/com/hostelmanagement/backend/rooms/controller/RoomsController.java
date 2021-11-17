@@ -3,7 +3,6 @@ package com.hostelmanagement.backend.rooms.controller;
 import com.hostelmanagement.backend.exception.ServiceException;
 import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.rooms.service.RoomsService;
-import com.hostelmanagement.backend.util.LiteralConstants;
 import com.hostelmanagement.backend.util.ParsingUtil;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +19,10 @@ public class RoomsController {
     @Autowired
     private RoomsService roomsService;
 
-    @RequestMapping(value="/rooms/getRoomsList", method= RequestMethod.GET, produces = "application/json")
-    public List<RoomDTO> getRoomsList() throws ServiceException {
+    @RequestMapping(value="/rooms/getRooms", method= RequestMethod.GET, produces = "application/json")
+    public List<RoomDTO> getRooms() throws ServiceException {
         try{
-            return roomsService.getRoomsList();
+            return roomsService.getRooms();
         }catch (ServiceException se){
             throw new ServiceException("[ERROR:SE] getRoomsList() ",se);
         }catch (Exception e){

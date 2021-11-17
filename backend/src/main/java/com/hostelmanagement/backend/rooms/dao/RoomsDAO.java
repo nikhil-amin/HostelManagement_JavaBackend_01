@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoomsDAO {
 
-    public List<RoomDTO> getRoomsList() throws DBException;
+    public List<RoomDTO> getRooms() throws DBException;
 
     public void insertRooms(List<RoomDTO> rooms) throws DBException;
 

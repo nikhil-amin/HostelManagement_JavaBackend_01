@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoomsService {
 
-    public List<RoomDTO> getRoomsList() throws ServiceException;
+    public List<RoomDTO> getRooms() throws ServiceException;
 
     public void insertRooms(List<RoomDTO> rooms) throws ServiceException;
 
