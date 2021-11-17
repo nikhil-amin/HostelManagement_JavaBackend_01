@@ -102,4 +102,17 @@ public class RoomsController {
             throw new ServiceException("[ERROR:E] updateRoom() ", e);
         }
     }
+
+    @RequestMapping(value="/rooms/deleteRoomByRoomID/{roomID}", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteRoomByRoomID(HttpServletRequest req, HttpServletResponse res, @PathVariable("roomID") int roomID) throws ServiceException {
+        try{
+            roomsService.deleteRoomByRoomID(roomID);
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] deleteRoomByRoomID() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteRoomByRoomID() ", e);
+        }
+    }
 }
