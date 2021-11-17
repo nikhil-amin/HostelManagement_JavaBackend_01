@@ -61,13 +61,13 @@ public class RoomsServiceImpl implements RoomsService {
     }
 
     @Override
-    public void updateRoom(RoomDTO room, int roomID) throws ServiceException {
+    public void updateRoomByRoomID(RoomDTO room, int roomID) throws ServiceException {
         try{
-            roomsDAO.updateRoom(room, roomID);
+            roomsDAO.updateRoomByRoomID(room, roomID);
         }catch (DBException de){
-            throw new ServiceException("[ERROR:SE] updateRoom()", de);
+            throw new ServiceException("[ERROR:SE] updateRoomByRoomID()", de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] updateRoom() ", e);
+            throw new ServiceException("[ERROR:E] updateRoomByRoomID() ", e);
         }
     }
 

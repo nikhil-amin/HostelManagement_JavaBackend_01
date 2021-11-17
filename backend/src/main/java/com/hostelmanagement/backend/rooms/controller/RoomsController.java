@@ -79,9 +79,9 @@ public class RoomsController {
         }
     }
 
-    @RequestMapping(value="/rooms/updateRoom/{roomID}", method= RequestMethod.POST)
+    @RequestMapping(value="/rooms/updateRoomByRoomID/{roomID}", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void updateRoom(HttpServletRequest req, HttpServletResponse res,
+    public void updateRoomByRoomID(HttpServletRequest req, HttpServletResponse res,
                            @RequestBody String roomJson, @PathVariable("roomID") int roomID) throws ServiceException {
         try{
             JSONObject jsonObject = new JSONObject(ParsingUtil.validateString(roomJson));
@@ -94,12 +94,12 @@ public class RoomsController {
 
             RoomDTO room = new RoomDTO(roomNumber, roomType, totalNumberOfBeds, occupiedNumberOfBeds, roomPrice, roomDescription);
 
-            roomsService.updateRoom(room, roomID);
+            roomsService.updateRoomByRoomID(room, roomID);
 
         }catch (ServiceException se){
-            throw new ServiceException("[ERROR:SE] updateRoom() ", se);
+            throw new ServiceException("[ERROR:SE] updateRoomByRoomID() ", se);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] updateRoom() ", e);
+            throw new ServiceException("[ERROR:E] updateRoomByRoomID() ", e);
         }
     }
 
