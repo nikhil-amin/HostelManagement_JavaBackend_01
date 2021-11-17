@@ -14,4 +14,6 @@ public interface RoomsDAO {
     public void insertRoom(RoomDTO room) throws DBException;
 
     public RoomDTO getRoomByRoomNumber(int roomNumber) throws DBException;
+
+    public void updateRoom(RoomDTO room, int roomID) throws DBException;
 }

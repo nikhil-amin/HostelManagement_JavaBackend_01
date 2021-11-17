@@ -78,4 +78,28 @@ public class RoomsController {
             throw new ServiceException("[ERROR:E] insertRooms() ", e);
         }
     }
+
+    @RequestMapping(value="/rooms/updateRoom/{roomID}", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateRoom(HttpServletRequest req, HttpServletResponse res,
+                           @RequestBody String roomJson, @PathVariable("roomID") int roomID) throws ServiceException {
+        try{
+            JSONObject jsonObject = new JSONObject(ParsingUtil.validateString(roomJson));
+            int roomNumber = Integer.parseInt(jsonObject.get("roomNumber").toString());
+            String roomType = jsonObject.get("roomType").toString();
+            int totalNumberOfBeds = Integer.parseInt(jsonObject.get("totalNumberOfBeds").toString());
+            int occupiedNumberOfBeds = Integer.parseInt(jsonObject.get("occupiedNumberOfBeds").toString());
+            int roomPrice = Integer.parseInt(jsonObject.get("roomPrice").toString());
+            String roomDescription = jsonObject.get("roomDescription").toString();
+
+            RoomDTO room = new RoomDTO(roomNumber, roomType, totalNumberOfBeds, occupiedNumberOfBeds, roomPrice, roomDescription);
+
+            roomsService.updateRoom(room, roomID);
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] updateRoom() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] updateRoom() ", e);
+        }
+    }
 }

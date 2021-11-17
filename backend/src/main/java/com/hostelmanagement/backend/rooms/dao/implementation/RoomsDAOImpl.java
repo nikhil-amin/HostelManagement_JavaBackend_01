@@ -131,4 +131,29 @@ public class RoomsDAOImpl implements RoomsDAO {
             throw new DBException("[ERROR:E] insertRoom() ",e);
         }
     }
+
+    @Override
+    public void updateRoom(RoomDTO room, int roomID) throws DBException {
+        try{
+            jdbcTemplate.update(QueryConstants.UPDATE_ROOM, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setInt(1, room.getRoomNumber());
+                    ps.setString(2, room.getRoomType());
+                    ps.setInt(3, room.getTotalNumberOfBeds());
+                    ps.setInt(4, room.getOccupiedNumberOfBeds());
+                    ps.setInt(5, room.getRoomPrice());
+                    ps.setString(6, room.getRoomDescription());
+                    ps.setInt(7, roomID);
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] updateRoom() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] updateRoom() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] updateRoom() ",e);
+        }
+    }
 }

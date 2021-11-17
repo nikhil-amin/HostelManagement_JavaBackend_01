@@ -14,4 +14,6 @@ public interface RoomsService {
     public void insertRoom(RoomDTO room) throws ServiceException;
 
     public RoomDTO getRoomByRoomNumber(int roomNumber) throws ServiceException;
+
+    public void updateRoom(RoomDTO room, int roomID) throws ServiceException;
 }

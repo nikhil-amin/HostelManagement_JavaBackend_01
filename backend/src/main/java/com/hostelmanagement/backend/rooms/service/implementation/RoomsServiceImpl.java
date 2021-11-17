@@ -60,4 +60,14 @@ public class RoomsServiceImpl implements RoomsService {
         }
     }
 
+    @Override
+    public void updateRoom(RoomDTO room, int roomID) throws ServiceException {
+        try{
+            roomsDAO.updateRoom(room, roomID);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] updateRoom()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] updateRoom() ", e);
+        }
+    }
 }
