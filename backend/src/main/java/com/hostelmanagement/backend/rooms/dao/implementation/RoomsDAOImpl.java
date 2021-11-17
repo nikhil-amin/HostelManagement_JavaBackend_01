@@ -54,6 +54,31 @@ public class RoomsDAOImpl implements RoomsDAO {
     }
 
     @Override
+    public RoomDTO getRoomByRoomNumber(int roomNumber) throws DBException {
+        RoomDTO room = new RoomDTO();
+        try{
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOM_BY_ROOM_NUMBER, roomNumber);
+
+            if(0 != rows.size()){
+                room.setRoomNumber(Integer.parseInt(rows.get(0).get(LiteralConstants.ROOM_NUMBER)));
+                room.setRoomType(rows.get(0).get(LiteralConstants.ROOM_TYPE));
+                room.setTotalNumberOfBeds(Integer.parseInt(rows.get(0).get(LiteralConstants.TOTAL_NUMBER_OF_BEDS)));
+                room.setOccupiedNumberOfBeds(Integer.parseInt(rows.get(0).get(LiteralConstants.OCCUPIED_NUMBER_OF_BEDS)));
+                room.setRoomPrice(Integer.parseInt(rows.get(0).get(LiteralConstants.ROOM_PRICE)));
+                room.setRoomDescription(rows.get(0).get(LiteralConstants.ROOM_DESCRIPTION));
+            }
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] getRoomByRoomNumber() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] getRoomByRoomNumber() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] getRoomByRoomNumber() ",e);
+        }
+        return room;
+    }
+
+    @Override
     public void insertRooms(List<RoomDTO> rooms) throws DBException {
         try{
 

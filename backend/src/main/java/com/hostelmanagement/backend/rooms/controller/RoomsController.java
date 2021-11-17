@@ -30,6 +30,17 @@ public class RoomsController {
         }
     }
 
+    @RequestMapping(value="/rooms/getRoomByRoomNumber/{roomNumber}", method= RequestMethod.GET, produces = "application/json")
+    public RoomDTO getRoomByRoomNumber(@PathVariable("roomNumber") int roomNumber) throws ServiceException {
+        try{
+            return roomsService.getRoomByRoomNumber(roomNumber);
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] getRoomByRoomNumber() ",se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] getRoomByRoomNumber() ",e);
+        }
+    }
+
     @RequestMapping(value="/rooms/insertRooms", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertRooms(HttpServletRequest req, HttpServletResponse res, @RequestBody String roomsJson) throws ServiceException {
