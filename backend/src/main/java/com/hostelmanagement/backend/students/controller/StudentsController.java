@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hostelmanagement.backend.exception.ServiceException;
-import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.students.dto.StudentsDTO;
 import com.hostelmanagement.backend.students.service.StudentsService;
 import com.hostelmanagement.backend.util.ParsingUtil;
