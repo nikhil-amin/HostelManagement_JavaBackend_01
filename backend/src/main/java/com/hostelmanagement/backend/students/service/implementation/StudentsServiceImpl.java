@@ -48,5 +48,16 @@ public class StudentsServiceImpl implements StudentsService {
             throw new ServiceException("[ERROR:E] insertStudents() ", e);
         }
     }
+
+	@Override
+	public void insertStudent(StudentsDTO student) throws ServiceException {
+		try{
+        	studentsDAO.insertStudent(student);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] insertStudent()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] insertStudent() ", e);
+        }
+	}
     
 }

@@ -12,8 +12,20 @@ public class StudentsDTO implements Serializable {
     private String studentEmail;
     private int roomID;
     private boolean messFacilityOpted;
+    
+    public StudentsDTO() {
+    }
 
-    public int getStudentID() {
+	public StudentsDTO(String studentName, String studentUsn, String studentPhone, String studentEmail, int roomID, boolean messFacilityOpted) {
+		this.studentName = studentName;
+		this.studentUsn = studentUsn;
+		this.studentPhone = studentPhone;
+		this.studentEmail = studentEmail;
+		this.roomID = roomID;
+		this.messFacilityOpted = messFacilityOpted;
+	}
+
+	public int getStudentID() {
         return studentID;
     }
 

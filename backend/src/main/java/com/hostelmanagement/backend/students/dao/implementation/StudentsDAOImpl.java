@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import com.hostelmanagement.backend.exception.DBException;
@@ -84,7 +85,7 @@ public class StudentsDAOImpl implements StudentsDAO {
     public void insertStudents(List<StudentsDTO> students) throws DBException {
         try{
 
-            jdbcTemplate.batchUpdate(QueryConstants.INSERT_STUDENTS, new BatchPreparedStatementSetter() {
+            jdbcTemplate.batchUpdate(QueryConstants.INSERT_STUDENT, new BatchPreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     ps.setString(1, students.get(i).getStudentName());
@@ -109,4 +110,29 @@ public class StudentsDAOImpl implements StudentsDAO {
             throw new DBException("[ERROR:E] insertStudents() ",e);
         }
     }
+
+	@Override
+	public void insertStudent(StudentsDTO student) throws DBException {
+		try{
+            jdbcTemplate.update(QueryConstants.INSERT_STUDENT, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                	ps.setString(1, student.getStudentName());
+                    ps.setString(2, student.getStudentUsn());
+                    ps.setString(3, student.getStudentPhone());
+                    ps.setString(4, student.getStudentEmail());
+                    ps.setInt(5, student.getRoomID());
+                    ps.setString(6, student.isMessFacilityOpted()? LiteralConstants.YES : LiteralConstants.NO);
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] insertRoom() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] insertRoom() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] insertRoom() ",e);
+        }
+		
+	}
 }

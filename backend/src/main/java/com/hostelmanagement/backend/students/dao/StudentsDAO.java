@@ -12,5 +12,7 @@ public interface StudentsDAO {
     public StudentsDTO getStudentByUsn(String studentUsn) throws DBException;
     
     public void insertStudents(List<StudentsDTO> students) throws DBException;
+
+	public void insertStudent(StudentsDTO student) throws DBException;
     
 }
