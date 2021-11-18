@@ -14,4 +14,7 @@ public interface StudentsService {
     public void insertStudents(List<StudentsDTO> students) throws ServiceException;
 
 	public void insertStudent(StudentsDTO student) throws ServiceException;
+	
+    public void updateStudentByStudentID(StudentsDTO student, int studentID) throws ServiceException;
+
 }

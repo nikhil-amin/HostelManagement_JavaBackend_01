@@ -59,5 +59,17 @@ public class StudentsServiceImpl implements StudentsService {
             throw new ServiceException("[ERROR:E] insertStudent() ", e);
         }
 	}
+
+	@Override
+	public void updateStudentByStudentID(StudentsDTO student, int studentID) throws ServiceException {
+		try{
+        	studentsDAO.updateStudentByStudentID(student, studentID);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] updateStudentByStudentID()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] updateStudentByStudentID() ", e);
+        }
+		
+	}
     
 }

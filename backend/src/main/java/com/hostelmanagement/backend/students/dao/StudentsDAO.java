@@ -14,5 +14,7 @@ public interface StudentsDAO {
     public void insertStudents(List<StudentsDTO> students) throws DBException;
 
 	public void insertStudent(StudentsDTO student) throws DBException;
+
+	public void updateStudentByStudentID(StudentsDTO student, int studentID) throws DBException;
     
 }

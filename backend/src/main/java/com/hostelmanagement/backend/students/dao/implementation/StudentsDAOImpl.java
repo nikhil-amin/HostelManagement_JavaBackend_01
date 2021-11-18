@@ -135,4 +135,30 @@ public class StudentsDAOImpl implements StudentsDAO {
         }
 		
 	}
+
+	@Override
+	public void updateStudentByStudentID(StudentsDTO student, int studentID) throws DBException {
+		try{
+            jdbcTemplate.update(QueryConstants.UPDATE_ROOM_BY_ROOM_ID, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                	ps.setString(1, student.getStudentName());
+                    ps.setString(2, student.getStudentUsn());
+                    ps.setString(3, student.getStudentPhone());
+                    ps.setString(4, student.getStudentEmail());
+                    ps.setInt(5, student.getRoomID());
+                    ps.setString(6, student.isMessFacilityOpted()? LiteralConstants.YES : LiteralConstants.NO);
+                    ps.setInt(7, studentID);
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] updateStudentByStudentID() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] updateStudentByStudentID() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] updateStudentByStudentID() ",e);
+        }
+		
+	}
 }

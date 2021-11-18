@@ -85,5 +85,29 @@ public class StudentsController {
             throw new ServiceException("[ERROR:E] insertRooms() ", e);
         }
     }
+    
+    @RequestMapping(value="/rooms/updateStudentByStudentID/{studentID}", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateStudentByStudentID(HttpServletRequest req, HttpServletResponse res,
+                           @RequestBody String studentJson, @PathVariable("studentID") int studentID) throws ServiceException {
+        try{
+            JSONObject jsonObject = new JSONObject(ParsingUtil.validateString(studentJson));
+            String studentName = jsonObject.get("studentName").toString();
+            String studentUsn = jsonObject.get("studentUsn").toString();
+            String studentPhone = jsonObject.get("studentPhone").toString();
+            String studentEmail = jsonObject.get("studentEmail").toString();
+            int roomID = Integer.parseInt(jsonObject.get("roomID").toString());
+            boolean messFacilityOpted = "YES".equalsIgnoreCase(jsonObject.get("messFacilityOpted").toString());
+
+            StudentsDTO student = new StudentsDTO(studentName, studentUsn, studentPhone, studentEmail, roomID, messFacilityOpted);
+
+            studentsService.updateStudentByStudentID(student, studentID);
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] updateStudentByStudentID() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] updateStudentByStudentID() ", e);
+        }
+    }
 
 }
