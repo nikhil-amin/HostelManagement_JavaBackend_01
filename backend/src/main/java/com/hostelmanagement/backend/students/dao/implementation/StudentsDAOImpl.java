@@ -1,6 +1,7 @@
 package com.hostelmanagement.backend.students.dao.implementation;
 
 import com.hostelmanagement.backend.exception.DBException;
+import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.students.dao.StudentsDAO;
 import com.hostelmanagement.backend.students.dao.constants.QueryConstants;
 import com.hostelmanagement.backend.students.dto.StudentsDTO;
@@ -48,5 +49,31 @@ public class StudentsDAOImpl implements StudentsDAO {
             throw new DBException("[ERROR:E] getStudentsList() ", e);
         }
         return students;
+    }
+    
+    @Override
+    public StudentsDTO getStudentsByUsn(String studentUsn) throws DBException {
+    	StudentsDTO student = new StudentsDTO();
+        try{
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_STUDENTS_BY_USN, studentUsn);
+
+            if(0 != rows.size()){
+            	student.setStudentID(Integer.parseInt(rows.get(0).get(LiteralConstants.STUDENT_ID)));
+                student.setStudentName(rows.get(0).get(LiteralConstants.STUDENT_NAME));
+                student.setStudentUsn(rows.get(0).get(LiteralConstants.STUDENT_USN));
+                student.setStudentPhone(rows.get(0).get(LiteralConstants.STUDENT_PHONE));
+                student.setStudentEmail(rows.get(0).get(LiteralConstants.STUDENT_EMAIL));
+                student.setRoomID(Integer.parseInt(rows.get(0).get(LiteralConstants.ROOM_ID)));
+                student.setMessFacilityOpted("YES".equals(rows.get(0).get(LiteralConstants.MESS_FACILITY_OPTED)));
+            }
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] getStudentsByUsn() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] getStudentsByUsn() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] getStudentsByUsn() ",e);
+        }
+        return student;
     }
 }

@@ -2,6 +2,7 @@ package com.hostelmanagement.backend.students.service.implementation;
 
 import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.exception.ServiceException;
+import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.students.dao.StudentsDAO;
 import com.hostelmanagement.backend.students.dto.StudentsDTO;
 import com.hostelmanagement.backend.students.service.StudentsService;
@@ -25,4 +26,16 @@ public class StudentsServiceImpl implements StudentsService {
             throw new ServiceException("[ERROR:E] getStudentsList() ", e);
         }
     }
+    
+    @Override
+    public StudentsDTO getStudentsByUsn(String studentUsn) throws ServiceException {
+        try{
+            return studentsDAO.getStudentsByUsn(studentUsn);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] getStudentsByUsn() ",de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] getStudentsByUsn() ",e);
+        }
+    }
+    
 }

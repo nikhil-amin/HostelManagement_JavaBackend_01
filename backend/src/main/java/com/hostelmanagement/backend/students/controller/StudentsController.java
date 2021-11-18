@@ -1,9 +1,11 @@
 package com.hostelmanagement.backend.students.controller;
 
 import com.hostelmanagement.backend.exception.ServiceException;
+import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.students.dto.StudentsDTO;
 import com.hostelmanagement.backend.students.service.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,17 @@ public class StudentsController {
             throw new ServiceException("[ERROR:SE] getStudentsList() ", se);
         }catch (Exception e){
             throw new ServiceException("[ERROR:E] getStudentsList() ", e);
+        }
+    }
+    
+    @RequestMapping(value="/students/getStudentsByUsn/{studentUsn}", method= RequestMethod.GET, produces = "application/json")
+    public StudentsDTO getStudentsByUsn(@PathVariable("studentUsn") String studentUsn) throws ServiceException {
+        try{
+            return studentsService.getStudentsByUsn(studentUsn);
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] getStudentsByUsn() ",se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] getStudentsByUsn() ",e);
         }
     }
 }

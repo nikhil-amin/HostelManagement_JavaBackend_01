@@ -8,4 +8,6 @@ import java.util.List;
 public interface StudentsService {
 
     public List<StudentsDTO> getStudentsList() throws ServiceException;
+    
+    public StudentsDTO getStudentsByUsn(String studentUsn) throws ServiceException;
 }
