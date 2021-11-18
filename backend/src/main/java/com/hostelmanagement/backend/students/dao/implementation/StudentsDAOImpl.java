@@ -161,4 +161,24 @@ public class StudentsDAOImpl implements StudentsDAO {
         }
 		
 	}
+
+	@Override
+	public void deleteStudentByStudentID(int studentID) throws DBException {
+		try{
+
+            jdbcTemplate.update(QueryConstants.DELETE_STUDENT, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setInt(1, studentID);
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] deleteStudentByStudentID() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] deleteStudentByStudentID() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] deleteStudentByStudentID() ",e);
+        }
+	}
 }

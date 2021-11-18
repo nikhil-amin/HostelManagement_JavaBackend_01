@@ -86,7 +86,7 @@ public class StudentsController {
         }
     }
     
-    @RequestMapping(value="/rooms/updateStudentByStudentID/{studentID}", method= RequestMethod.POST)
+    @RequestMapping(value="/students/updateStudentByStudentID/{studentID}", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void updateStudentByStudentID(HttpServletRequest req, HttpServletResponse res,
                            @RequestBody String studentJson, @PathVariable("studentID") int studentID) throws ServiceException {
@@ -107,6 +107,19 @@ public class StudentsController {
             throw new ServiceException("[ERROR:SE] updateStudentByStudentID() ", se);
         }catch (Exception e){
             throw new ServiceException("[ERROR:E] updateStudentByStudentID() ", e);
+        }
+    }
+    
+    @RequestMapping(value="/students/deleteStudentByStudentID/{studentID}", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteStudentByStudentID(HttpServletRequest req, HttpServletResponse res, @PathVariable("studentID") int studentID) throws ServiceException {
+        try{
+        	studentsService.deleteStudentByStudentID(studentID);
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] deleteStudentByStudentID() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteStudentByStudentID() ", e);
         }
     }
 

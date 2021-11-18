@@ -9,4 +9,6 @@ public class QueryConstants {
     public final static String INSERT_STUDENT = "INSERT INTO students(student_name, student_usn, student_phone, student_email, room_id, mess_facility_opted) VALUES (?, ?, ?, ?, ?, ?)";
 
 	public final static String UPDATE_ROOM_BY_ROOM_ID = "UPDATE students SET student_name =?, student_usn =?, student_phone =?, student_email =?, room_id =?, mess_facility_opted = ? WHERE student_id = ?";
+
+	public static final String DELETE_STUDENT = "DELETE FROM students WHERE student_id = ?";
 }

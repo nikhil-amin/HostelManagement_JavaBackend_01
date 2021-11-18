@@ -17,4 +17,6 @@ public interface StudentsService {
 	
     public void updateStudentByStudentID(StudentsDTO student, int studentID) throws ServiceException;
 
+	public void deleteStudentByStudentID(int studentID) throws ServiceException;
+
 }

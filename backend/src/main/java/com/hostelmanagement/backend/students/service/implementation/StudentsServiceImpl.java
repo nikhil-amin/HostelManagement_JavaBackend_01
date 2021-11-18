@@ -69,7 +69,17 @@ public class StudentsServiceImpl implements StudentsService {
         }catch (Exception e){
             throw new ServiceException("[ERROR:E] updateStudentByStudentID() ", e);
         }
-		
+	}
+
+	@Override
+	public void deleteStudentByStudentID(int studentID) throws ServiceException {
+		try{
+        	studentsDAO.deleteStudentByStudentID(studentID);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] deleteStudentByStudentID()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteStudentByStudentID() ", e);
+        }
 	}
     
 }
