@@ -181,4 +181,19 @@ public class StudentsDAOImpl implements StudentsDAO {
             throw new DBException("[ERROR:E] deleteStudentByStudentID() ",e);
         }
 	}
+
+	@Override
+	public void deleteAllStudents() throws DBException {
+		try{
+
+            jdbcTemplate.update(QueryConstants.DELETE_ALL_STUDENTS);
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] deleteAllStudents() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] deleteAllStudents() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] deleteAllStudents() ",e);
+        }
+	}
 }

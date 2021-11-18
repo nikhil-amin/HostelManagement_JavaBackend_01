@@ -122,5 +122,18 @@ public class StudentsController {
             throw new ServiceException("[ERROR:E] deleteStudentByStudentID() ", e);
         }
     }
+    
+    @RequestMapping(value="/students/deleteAllStudents", method= RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteAllStudents() throws ServiceException {
+        try{
+        	studentsService.deleteAllStudents();
+
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] deleteAllStudents() ", se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] deleteAllStudents() ", e);
+        }
+    }
 
 }

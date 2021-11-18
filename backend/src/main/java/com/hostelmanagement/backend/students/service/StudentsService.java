@@ -19,4 +19,6 @@ public interface StudentsService {
 
 	public void deleteStudentByStudentID(int studentID) throws ServiceException;
 
+	public void deleteAllStudents() throws ServiceException;
+
 }
