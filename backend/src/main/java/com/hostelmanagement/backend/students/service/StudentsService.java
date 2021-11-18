@@ -9,5 +9,5 @@ public interface StudentsService {
 
     public List<StudentsDTO> getStudentsList() throws ServiceException;
     
-    public StudentsDTO getStudentsByUsn(String studentUsn) throws ServiceException;
+    public StudentsDTO getStudentByUsn(String studentUsn) throws ServiceException;
 }

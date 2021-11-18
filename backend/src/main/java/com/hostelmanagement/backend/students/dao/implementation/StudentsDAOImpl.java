@@ -52,7 +52,7 @@ public class StudentsDAOImpl implements StudentsDAO {
     }
     
     @Override
-    public StudentsDTO getStudentsByUsn(String studentUsn) throws DBException {
+    public StudentsDTO getStudentByUsn(String studentUsn) throws DBException {
     	StudentsDTO student = new StudentsDTO();
         try{
             List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_STUDENTS_BY_USN, studentUsn);
@@ -68,11 +68,11 @@ public class StudentsDAOImpl implements StudentsDAO {
             }
 
         }catch (DataAccessException dae){
-            throw new DBException("[ERROR:DAE] getStudentsByUsn() ", dae);
+            throw new DBException("[ERROR:DAE] getStudentByUsn() ", dae);
         }catch (NumberFormatException nfe){
-            throw new DBException("[ERROR:NFE] getStudentsByUsn() ", nfe);
+            throw new DBException("[ERROR:NFE] getStudentByUsn() ", nfe);
         }catch (Exception e){
-            throw new DBException("[ERROR:E] getStudentsByUsn() ",e);
+            throw new DBException("[ERROR:E] getStudentByUsn() ",e);
         }
         return student;
     }

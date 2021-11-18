@@ -11,6 +11,6 @@ public interface StudentsDAO {
 
     public List<StudentsDTO> getStudentsList() throws DBException;
     
-    public StudentsDTO getStudentsByUsn(String studentUsn) throws DBException;
+    public StudentsDTO getStudentByUsn(String studentUsn) throws DBException;
     
 }

@@ -29,14 +29,14 @@ public class StudentsController {
         }
     }
     
-    @RequestMapping(value="/students/getStudentsByUsn/{studentUsn}", method= RequestMethod.GET, produces = "application/json")
-    public StudentsDTO getStudentsByUsn(@PathVariable("studentUsn") String studentUsn) throws ServiceException {
+    @RequestMapping(value="/students/getStudentByUsn/{studentUsn}", method= RequestMethod.GET, produces = "application/json")
+    public StudentsDTO getStudentByUsn(@PathVariable("studentUsn") String studentUsn) throws ServiceException {
         try{
-            return studentsService.getStudentsByUsn(studentUsn);
+            return studentsService.getStudentByUsn(studentUsn);
         }catch (ServiceException se){
-            throw new ServiceException("[ERROR:SE] getStudentsByUsn() ",se);
+            throw new ServiceException("[ERROR:SE] getStudentByUsn() ",se);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getStudentsByUsn() ",e);
+            throw new ServiceException("[ERROR:E] getStudentByUsn() ",e);
         }
     }
 }

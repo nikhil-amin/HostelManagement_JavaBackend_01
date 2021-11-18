@@ -28,13 +28,13 @@ public class StudentsServiceImpl implements StudentsService {
     }
     
     @Override
-    public StudentsDTO getStudentsByUsn(String studentUsn) throws ServiceException {
+    public StudentsDTO getStudentByUsn(String studentUsn) throws ServiceException {
         try{
-            return studentsDAO.getStudentsByUsn(studentUsn);
+            return studentsDAO.getStudentByUsn(studentUsn);
         }catch (DBException de){
-            throw new ServiceException("[ERROR:SE] getStudentsByUsn() ",de);
+            throw new ServiceException("[ERROR:SE] getStudentByUsn() ",de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getStudentsByUsn() ",e);
+            throw new ServiceException("[ERROR:E] getStudentByUsn() ",e);
         }
     }
     
