@@ -26,5 +26,8 @@ public class LiteralConstants {
     public final static String TOTAL_PRICE = "total_price";
     public final static String MONTH_NAME = "month_name";
     public final static String YEAR = "year";
+    
+    public final static String YES = "YES";
+    public final static String NO = "NO";
 
 }

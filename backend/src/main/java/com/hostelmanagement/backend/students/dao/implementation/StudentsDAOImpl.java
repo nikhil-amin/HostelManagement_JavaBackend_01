@@ -1,19 +1,22 @@
 package com.hostelmanagement.backend.students.dao.implementation;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.hostelmanagement.backend.exception.DBException;
-import com.hostelmanagement.backend.rooms.dto.RoomDTO;
 import com.hostelmanagement.backend.students.dao.StudentsDAO;
 import com.hostelmanagement.backend.students.dao.constants.QueryConstants;
 import com.hostelmanagement.backend.students.dto.StudentsDTO;
 import com.hostelmanagement.backend.util.LiteralConstants;
 import com.hostelmanagement.backend.util.ParsingUtil;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Repository
 public class StudentsDAOImpl implements StudentsDAO {
@@ -75,5 +78,35 @@ public class StudentsDAOImpl implements StudentsDAO {
             throw new DBException("[ERROR:E] getStudentByUsn() ",e);
         }
         return student;
+    }
+    
+    @Override
+    public void insertStudents(List<StudentsDTO> students) throws DBException {
+        try{
+
+            jdbcTemplate.batchUpdate(QueryConstants.INSERT_STUDENTS, new BatchPreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps, int i) throws SQLException {
+                    ps.setString(1, students.get(i).getStudentName());
+                    ps.setString(2, students.get(i).getStudentUsn());
+                    ps.setString(3, students.get(i).getStudentPhone());
+                    ps.setString(4, students.get(i).getStudentEmail());
+                    ps.setInt(5, students.get(i).getRoomID());
+                    ps.setString(6, students.get(i).isMessFacilityOpted()? LiteralConstants.YES : LiteralConstants.NO);
+                }
+
+                @Override
+                public int getBatchSize() {
+                    return students.size();
+                }
+            });
+
+        }catch (DataAccessException dae){
+            throw new DBException("[ERROR:DAE] insertStudents() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] insertStudents() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] insertStudents() ",e);
+        }
     }
 }

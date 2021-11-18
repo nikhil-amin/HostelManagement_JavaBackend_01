@@ -1,15 +1,15 @@
 package com.hostelmanagement.backend.students.service.implementation;
 
-import com.hostelmanagement.backend.exception.DBException;
-import com.hostelmanagement.backend.exception.ServiceException;
-import com.hostelmanagement.backend.rooms.dto.RoomDTO;
-import com.hostelmanagement.backend.students.dao.StudentsDAO;
-import com.hostelmanagement.backend.students.dto.StudentsDTO;
-import com.hostelmanagement.backend.students.service.StudentsService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.hostelmanagement.backend.exception.DBException;
+import com.hostelmanagement.backend.exception.ServiceException;
+import com.hostelmanagement.backend.students.dao.StudentsDAO;
+import com.hostelmanagement.backend.students.dto.StudentsDTO;
+import com.hostelmanagement.backend.students.service.StudentsService;
 
 @Service
 public class StudentsServiceImpl implements StudentsService {
@@ -35,6 +35,17 @@ public class StudentsServiceImpl implements StudentsService {
             throw new ServiceException("[ERROR:SE] getStudentByUsn() ",de);
         }catch (Exception e){
             throw new ServiceException("[ERROR:E] getStudentByUsn() ",e);
+        }
+    }
+    
+    @Override
+    public void insertStudents(List<StudentsDTO> students) throws ServiceException {
+        try{
+        	studentsDAO.insertStudents(students);
+        }catch (DBException de){
+            throw new ServiceException("[ERROR:SE] insertStudents()", de);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] insertStudents() ", e);
         }
     }
     
