@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MessDAO {
 
-    public List<MessDTO> getMessList() throws DBException;
+    public List<MessDTO> getMess() throws DBException;
 }

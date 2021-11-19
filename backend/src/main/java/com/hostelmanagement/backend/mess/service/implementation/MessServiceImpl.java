@@ -16,13 +16,13 @@ public class MessServiceImpl implements MessService {
     @Autowired
     private MessDAO messDAO;
 
-    public List<MessDTO> getMessList() throws ServiceException{
+    public List<MessDTO> getMess() throws ServiceException{
         try{
-            return messDAO.getMessList();
+            return messDAO.getMess();
         }catch (DBException de){
-            throw new ServiceException("[ERROR:DE] getMessList() ", de);
+            throw new ServiceException("[ERROR:DE] getMess() ", de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getMessList() ", e);
+            throw new ServiceException("[ERROR:E] getMess() ", e);
         }
     }
 }

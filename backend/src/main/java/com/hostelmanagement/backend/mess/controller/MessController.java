@@ -16,14 +16,14 @@ public class MessController {
     @Autowired
     private MessService messService;
 
-    @RequestMapping(value = "/mess/getMessList", method = RequestMethod.GET, produces = "application/json")
-    public List<MessDTO> getMessList() throws ServiceException{
+    @RequestMapping(value = "/mess/getMess", method = RequestMethod.GET, produces = "application/json")
+    public List<MessDTO> getMess() throws ServiceException{
         try{
-            return messService.getMessList();
+            return messService.getMess();
         }catch (ServiceException se){
-            throw new ServiceException("[ERROR:SE] getMessList() ", se);
+            throw new ServiceException("[ERROR:SE] getMess() ", se);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getMessList() ", e);
+            throw new ServiceException("[ERROR:E] getMess() ", e);
         }
     }
 }

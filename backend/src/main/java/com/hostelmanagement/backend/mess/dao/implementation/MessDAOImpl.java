@@ -23,11 +23,11 @@ public class MessDAOImpl implements MessDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<MessDTO> getMessList() throws DBException{
+    public List<MessDTO> getMess() throws DBException{
         List<MessDTO> mess = new ArrayList<MessDTO>();
         try{
 
-            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_MESS_LIST);
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_MESS);
 
             for(Map<String, String> row : rows){
                 MessDTO messData = new MessDTO();
@@ -40,11 +40,11 @@ public class MessDAOImpl implements MessDAO {
                 mess.add(messData);
             }
         }catch (DataAccessException dae){
-            throw new DBException("[ERROR:DAE] getMessList() ", dae);
+            throw new DBException("[ERROR:DAE] getMess() ", dae);
         }catch(NumberFormatException nfe){
-            throw new DBException("[ERROR:NFE] getMessList() ", nfe);
+            throw new DBException("[ERROR:NFE] getMess() ", nfe);
         }catch (Exception e){
-            throw new DBException("[ERROR:E] getMessList() ", e);
+            throw new DBException("[ERROR:E] getMess() ", e);
         }
         return mess;
     }

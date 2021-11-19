@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MessService {
 
-    public List<MessDTO> getMessList() throws ServiceException;
+    public List<MessDTO> getMess() throws ServiceException;
 }
