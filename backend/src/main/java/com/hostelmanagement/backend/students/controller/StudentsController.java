@@ -56,6 +56,7 @@ public class StudentsController {
                     .convertJsonStringToList(studentsJson.toString(), StudentsDTO.class);
 
             studentsService.insertStudents(students);
+            
         }catch (ServiceException se){
             throw new ServiceException("[ERROR:SE] insertStudents() ", se);
         }catch (Exception e){

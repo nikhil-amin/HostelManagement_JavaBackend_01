@@ -1,9 +1,9 @@
 package com.hostelmanagement.backend.rooms.service;
 
+import java.util.List;
+
 import com.hostelmanagement.backend.exception.ServiceException;
 import com.hostelmanagement.backend.rooms.dto.RoomDTO;
-
-import java.util.List;
 
 public interface RoomsService {
 

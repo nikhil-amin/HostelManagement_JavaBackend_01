@@ -133,7 +133,6 @@ public class StudentsDAOImpl implements StudentsDAO {
         }catch (Exception e){
             throw new DBException("[ERROR:E] insertRoom() ",e);
         }
-		
 	}
 
 	@Override
@@ -159,7 +158,6 @@ public class StudentsDAOImpl implements StudentsDAO {
         }catch (Exception e){
             throw new DBException("[ERROR:E] updateStudentByStudentID() ",e);
         }
-		
 	}
 
 	@Override

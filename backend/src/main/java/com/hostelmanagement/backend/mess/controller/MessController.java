@@ -27,7 +27,7 @@ public class MessController {
     private MessService messService;
 
     @RequestMapping(value = "/mess/getMess", method = RequestMethod.GET, produces = "application/json")
-    public List<MessDTO> getMess() throws ServiceException{
+    public List<MessDTO> getMess() throws ServiceException {
         try{
             return messService.getMess();
         }catch (ServiceException se){

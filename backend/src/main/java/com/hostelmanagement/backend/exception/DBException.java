@@ -2,7 +2,8 @@ package com.hostelmanagement.backend.exception;
 
 public class DBException extends Exception{
 
-    private String message;
+	private static final long serialVersionUID = 1L;
+	private String message;
 
     public DBException(){
         super();

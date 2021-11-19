@@ -28,7 +28,7 @@ public class MessDAOImpl implements MessDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<MessDTO> getMess() throws DBException{
+    public List<MessDTO> getMess() throws DBException {
         List<MessDTO> messList = new ArrayList<MessDTO>();
         try{
 

@@ -1,9 +1,9 @@
 package com.hostelmanagement.backend.rooms.dao;
 
+import java.util.List;
+
 import com.hostelmanagement.backend.exception.DBException;
 import com.hostelmanagement.backend.rooms.dto.RoomDTO;
-
-import java.util.List;
 
 public interface RoomsDAO {
 

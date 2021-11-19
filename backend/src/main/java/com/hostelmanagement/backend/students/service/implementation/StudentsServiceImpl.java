@@ -17,7 +17,7 @@ public class StudentsServiceImpl implements StudentsService {
     @Autowired
     private StudentsDAO studentsDAO;
 
-    public List<StudentsDTO> getStudents() throws ServiceException{
+    public List<StudentsDTO> getStudents() throws ServiceException {
         try{
             return studentsDAO.getStudents();
         }catch (DBException de){

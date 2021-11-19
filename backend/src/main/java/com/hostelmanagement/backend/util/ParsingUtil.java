@@ -1,19 +1,20 @@
 package com.hostelmanagement.backend.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.json.JsonSanitizer;
-import com.hostelmanagement.backend.exception.DBException;
-import org.json.JSONArray;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.util.HtmlUtils;
-
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.json.JSONArray;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.util.HtmlUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.json.JsonSanitizer;
+import com.hostelmanagement.backend.exception.DBException;
 
 public class ParsingUtil {
 
