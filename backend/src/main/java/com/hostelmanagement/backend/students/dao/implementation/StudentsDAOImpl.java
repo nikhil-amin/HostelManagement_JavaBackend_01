@@ -28,11 +28,11 @@ public class StudentsDAOImpl implements StudentsDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<StudentsDTO> getStudentsList() throws DBException{
+    public List<StudentsDTO> getStudents() throws DBException{
         List<StudentsDTO> students = new ArrayList<StudentsDTO>();
         try{
 
-            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_STUDENTS_LIST);
+            List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_STUDENTS);
 
             for(Map<String, String> row : rows){
                 StudentsDTO student = new StudentsDTO();
@@ -46,11 +46,11 @@ public class StudentsDAOImpl implements StudentsDAO {
                 students.add(student);
             }
         }catch (DataAccessException dae){
-            throw new DBException("[ERROR:DAE] getStudentsList() ", dae);
+            throw new DBException("[ERROR:DAE] getStudents() ", dae);
         }catch(NumberFormatException nfe){
-            throw new DBException("[ERROR:NFE] getStudentsList() ", nfe);
+            throw new DBException("[ERROR:NFE] getStudents() ", nfe);
         }catch (Exception e){
-            throw new DBException("[ERROR:E] getStudentsList() ", e);
+            throw new DBException("[ERROR:E] getStudents() ", e);
         }
         return students;
     }

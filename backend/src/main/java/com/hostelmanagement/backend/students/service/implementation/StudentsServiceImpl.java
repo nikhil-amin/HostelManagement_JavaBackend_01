@@ -17,13 +17,13 @@ public class StudentsServiceImpl implements StudentsService {
     @Autowired
     private StudentsDAO studentsDAO;
 
-    public List<StudentsDTO> getStudentsList() throws ServiceException{
+    public List<StudentsDTO> getStudents() throws ServiceException{
         try{
-            return studentsDAO.getStudentsList();
+            return studentsDAO.getStudents();
         }catch (DBException de){
-            throw new ServiceException("[ERROR:DE] getStudentsList() ", de);
+            throw new ServiceException("[ERROR:DE] getStudents() ", de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getStudentsList() ", e);
+            throw new ServiceException("[ERROR:E] getStudents() ", e);
         }
     }
     

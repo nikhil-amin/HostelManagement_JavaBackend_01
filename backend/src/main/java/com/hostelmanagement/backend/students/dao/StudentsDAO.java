@@ -7,7 +7,7 @@ import com.hostelmanagement.backend.students.dto.StudentsDTO;
 
 public interface StudentsDAO {
 
-    public List<StudentsDTO> getStudentsList() throws DBException;
+    public List<StudentsDTO> getStudents() throws DBException;
     
     public StudentsDTO getStudentByUsn(String studentUsn) throws DBException;
     

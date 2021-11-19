@@ -26,14 +26,14 @@ public class StudentsController {
     @Autowired
     private StudentsService studentsService;
 
-    @RequestMapping(value = "/students/getStudentsList", method = RequestMethod.GET, produces = "application/json")
-    public List<StudentsDTO> getStudentsList() throws ServiceException{
+    @RequestMapping(value = "/students/getStudents", method = RequestMethod.GET, produces = "application/json")
+    public List<StudentsDTO> getStudents() throws ServiceException{
         try{
-            return studentsService.getStudentsList();
+            return studentsService.getStudents();
         }catch (ServiceException se){
-            throw new ServiceException("[ERROR:SE] getStudentsList() ", se);
+            throw new ServiceException("[ERROR:SE] getStudents() ", se);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] getStudentsList() ", e);
+            throw new ServiceException("[ERROR:E] getStudents() ", e);
         }
     }
     
