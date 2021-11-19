@@ -11,8 +11,19 @@ public class MessDTO implements Serializable {
     private int totalPrice;
     private String monthName;
     private int year;
+    
+    public MessDTO() {
+	}
+    
+	public MessDTO(String itemName, int itemQuantity, int totalPrice, String monthName, int year) {
+		this.itemName = itemName;
+		this.itemQuantity = itemQuantity;
+		this.totalPrice = totalPrice;
+		this.monthName = monthName;
+		this.year = year;
+	}
 
-    public int getItemID() {
+	public int getItemID() {
         return itemID;
     }
 
