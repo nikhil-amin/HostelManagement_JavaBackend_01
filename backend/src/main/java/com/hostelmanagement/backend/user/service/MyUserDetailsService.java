@@ -1,4 +1,4 @@
-package com.hostelmanagement.backend.services;
+package com.hostelmanagement.backend.user.service;
 
 import java.util.ArrayList;
 
