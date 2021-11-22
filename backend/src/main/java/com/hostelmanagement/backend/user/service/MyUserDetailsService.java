@@ -21,12 +21,9 @@ public class MyUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("Username " +username);
 		
 		try{
 			UserDetailsDTO userDetails = myUserDetailsDAO.findUserByUsername(username);
-			
-			System.out.println("LOAD: "+userDetails.getPassword());
 			
 			return new User(userDetails.getUserName(), userDetails.getPassword(), new ArrayList<>());
 			
