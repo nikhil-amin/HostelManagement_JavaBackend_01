@@ -27,6 +27,13 @@ public class LiteralConstants {
     public final static String MONTH_NAME = "month_name";
     public final static String YEAR = "year";
     
+    //users
+    public final static String USER_ID = "user_id";
+    public final static String USERNAME = "username";
+    public final static String PASSWORD = "password";
+    public final static String FULLNAME = "fullname";
+    public final static String EMAIL = "email";
+    
     public final static String YES = "YES";
     public final static String NO = "NO";
 
