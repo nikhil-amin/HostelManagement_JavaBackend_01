@@ -149,7 +149,7 @@ public class ParsingUtil {
     	try {
     		String value = jdbcTemplate.queryForObject(query, String.class, args);
     		
-    		if(isNumber(value)) {
+    		if(StringValidator.isNumber(value)) {
     			return Integer.parseInt(value);
     		}else {
     			return -1;
@@ -187,13 +187,4 @@ public class ParsingUtil {
         }
     }
     
-    private static boolean isNumber(String value) {
-    	String allowedString = "0123456789";
-    	for(int i=0; i<value.length(); i++) {
-    		if(allowedString.indexOf(value.charAt(i)) < 0) {
-    			return false;
-    		}
-    	}
-    	return true;
-    }
 }
