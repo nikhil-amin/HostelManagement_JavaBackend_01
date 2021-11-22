@@ -62,6 +62,7 @@ public class MyUserDetailsService implements UserDetailsService{
 			}
 			
 			myUserDetailsDAO.registerNewUser(authenticationRequest);
+			
         }catch (DBException de){
             throw new ServiceException("[ERROR:SE] registerNewUser() ",de);
         }catch (Exception e){

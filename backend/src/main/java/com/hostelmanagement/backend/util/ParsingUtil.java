@@ -40,8 +40,13 @@ public class ParsingUtil {
             }
 
         }catch (DataAccessException dae) {
-            throw new DBException("[ERROR] queryForList ", dae);
+            throw new DBException("[ERROR] queryForList() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] queryForList() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] queryForList() ",e);
         }
+        
         return finalList;
     }
 
@@ -67,8 +72,13 @@ public class ParsingUtil {
                 }
             }
         }catch (DataAccessException dae) {
-            throw new DBException("[ERROR] queryForList ", dae);
+            throw new DBException("[ERROR] queryForList() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] queryForList() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] queryForList() ",e);
         }
+        
         return finalList;
     }
 
@@ -145,7 +155,35 @@ public class ParsingUtil {
     			return -1;
     		}
     	}catch (DataAccessException dae) {
-            throw new DBException("[ERROR] queryForList ", dae);
+            throw new DBException("[ERROR] queryForInt() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] queryForInt() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] queryForInt() ",e);
+        }
+    }
+    
+    public static String queryForString(JdbcTemplate jdbcTemplate, String query) throws DBException{
+    	try {
+    		return jdbcTemplate.queryForObject(query, String.class);
+    	}catch (DataAccessException dae) {
+            throw new DBException("[ERROR] queryForString() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] queryForString() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] queryForString() ",e);
+        }
+    }
+    
+    public static String queryForString(JdbcTemplate jdbcTemplate, String query, Object... args) throws DBException{
+    	try {
+    		return jdbcTemplate.queryForObject(query, String.class, args);
+    	}catch (DataAccessException dae) {
+            throw new DBException("[ERROR] queryForString() ", dae);
+        }catch (NumberFormatException nfe){
+            throw new DBException("[ERROR:NFE] queryForString() ", nfe);
+        }catch (Exception e){
+            throw new DBException("[ERROR:E] queryForString() ",e);
         }
     }
     
