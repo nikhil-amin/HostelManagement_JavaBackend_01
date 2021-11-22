@@ -42,9 +42,9 @@ public class MyUserDetailsService implements UserDetailsService{
 		try{
 			return myUserDetailsDAO.isUserPresent(username);
 		}catch (DBException de){
-            throw new ServiceException("[ERROR:SE] registerNewUser() ",de);
+            throw new ServiceException("[ERROR:SE] isUserPresent() ",de);
         }catch (Exception e){
-            throw new ServiceException("[ERROR:E] registerNewUser() ",e);
+            throw new ServiceException("[ERROR:E] isUserPresent() ",e);
         }
 	}
 

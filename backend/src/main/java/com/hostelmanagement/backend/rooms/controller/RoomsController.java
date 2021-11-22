@@ -25,7 +25,7 @@ public class RoomsController {
 
     @Autowired
     private RoomsService roomsService;
-
+    
     @RequestMapping(value="/rooms/getRooms", method= RequestMethod.GET, produces = "application/json")
     public List<RoomDTO> getRooms() throws ServiceException {
         try{
