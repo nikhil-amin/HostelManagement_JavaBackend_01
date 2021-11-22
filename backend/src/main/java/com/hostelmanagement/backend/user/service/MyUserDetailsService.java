@@ -52,14 +52,14 @@ public class MyUserDetailsService implements UserDetailsService{
 		
 		try{
 			
+			if(isUserPresent(authenticationRequest.getUsername())) {
+				throw new ServiceException("Username Already Exists!");
+			}
+			
 			// Encrypting user password
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String password = passwordEncoder.encode(authenticationRequest.getPassword());
 			authenticationRequest.setPassword(password);
-			
-			if(isUserPresent(authenticationRequest.getUsername())) {
-				throw new ServiceException("Username Already Exists!");
-			}
 			
 			myUserDetailsDAO.registerNewUser(authenticationRequest);
 			
