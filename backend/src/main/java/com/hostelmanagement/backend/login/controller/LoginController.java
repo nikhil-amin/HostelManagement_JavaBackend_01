@@ -1,16 +1,17 @@
 package com.hostelmanagement.backend.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.hostelmanagement.backend.exception.ServiceException;
 import com.hostelmanagement.backend.login.dto.AuthenticationRequest;
@@ -50,5 +51,18 @@ public class LoginController {
 		
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 		
+    }
+	
+	@RequestMapping(value="/register", method= RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+    public void register(@RequestBody AuthenticationRequest authenticationRequest) throws ServiceException {
+        
+		try{
+            myUserDetailsService.registerNewUser(authenticationRequest);
+        }catch (ServiceException se){
+            throw new ServiceException("[ERROR:SE] getRoomsList() ",se);
+        }catch (Exception e){
+            throw new ServiceException("[ERROR:E] getRoomsList() ",e);
+        }
     }
 }

@@ -134,4 +134,28 @@ public class ParsingUtil {
 
         return list;
     }
+    
+    public static int queryForInt(JdbcTemplate jdbcTemplate, String query, Object... args) throws DBException{
+    	try {
+    		String value = jdbcTemplate.queryForObject(query, String.class, args);
+    		
+    		if(isNumber(value)) {
+    			return Integer.parseInt(value);
+    		}else {
+    			return -1;
+    		}
+    	}catch (DataAccessException dae) {
+            throw new DBException("[ERROR] queryForList ", dae);
+        }
+    }
+    
+    private static boolean isNumber(String value) {
+    	String allowedString = "0123456789";
+    	for(int i=0; i<value.length(); i++) {
+    		if(allowedString.indexOf(value.charAt(i)) < 0) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
 }
