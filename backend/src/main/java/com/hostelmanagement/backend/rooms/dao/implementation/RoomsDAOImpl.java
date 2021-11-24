@@ -36,6 +36,7 @@ public class RoomsDAOImpl implements RoomsDAO {
 
             for(Map<String, String> row : rows){
                 RoomDTO room = new RoomDTO();
+                room.setRoomID(Integer.parseInt(row.get(LiteralConstants.ROOM_ID)));
                 room.setRoomNumber(Integer.parseInt(row.get(LiteralConstants.ROOM_NUMBER)));
                 room.setRoomType(row.get(LiteralConstants.ROOM_TYPE));
                 room.setTotalNumberOfBeds(Integer.parseInt(row.get(LiteralConstants.TOTAL_NUMBER_OF_BEDS)));
@@ -61,6 +62,7 @@ public class RoomsDAOImpl implements RoomsDAO {
             List<Map<String, String>> rows = ParsingUtil.queryForList(jdbcTemplate, QueryConstants.GET_ROOM_BY_ROOM_NUMBER, roomNumber);
 
             if(0 != rows.size()){
+            	room.setRoomID(Integer.parseInt(rows.get(0).get(LiteralConstants.ROOM_ID)));
                 room.setRoomNumber(Integer.parseInt(rows.get(0).get(LiteralConstants.ROOM_NUMBER)));
                 room.setRoomType(rows.get(0).get(LiteralConstants.ROOM_TYPE));
                 room.setTotalNumberOfBeds(Integer.parseInt(rows.get(0).get(LiteralConstants.TOTAL_NUMBER_OF_BEDS)));
