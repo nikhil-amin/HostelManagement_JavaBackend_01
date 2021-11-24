@@ -26,17 +26,26 @@ public class MyUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		try{
-			UserDetailsDTO userDetails = myUserDetailsDAO.findUserByUsername(username);
+			UserDetailsDTO userDetails = findUserByUsername(username);
 			
 			return new User(userDetails.getUserName(), userDetails.getPassword(), new ArrayList<>());
 			
-        }catch (DBException de){
-            throw new UsernameNotFoundException("[ERROR:DE] loadUserByUsername() ", de);
         }catch (Exception e){
             throw new UsernameNotFoundException("[ERROR:E] loadUserByUsername() ", e);
         }
 	}
 	
+	public UserDetailsDTO findUserByUsername(String username) throws ServiceException {
+		
+		try{
+			return myUserDetailsDAO.findUserByUsername(username);
+        }catch (DBException de){
+            throw new UsernameNotFoundException("[ERROR:DE] findUserByUsername() ", de);
+        }catch (Exception e){
+            throw new UsernameNotFoundException("[ERROR:E] findUserByUsername() ", e);
+        }
+	}
+
 	private Boolean isUserPresent(String username) throws ServiceException {
 		
 		try{
@@ -52,7 +61,7 @@ public class MyUserDetailsService implements UserDetailsService{
 		
 		try{
 			
-			if(isUserPresent(authenticationRequest.getUsername())) {
+			if(isUserPresent(authenticationRequest.getUserName())) {
 				throw new ServiceException("Username Already Exists!");
 			}
 			

@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.hostelmanagement.backend.exception.ServiceException;
 import com.hostelmanagement.backend.login.dto.AuthenticationRequest;
 import com.hostelmanagement.backend.login.dto.AuthenticationResponse;
+import com.hostelmanagement.backend.user.dto.UserDetailsDTO;
 import com.hostelmanagement.backend.user.service.MyUserDetailsService;
 import com.hostelmanagement.backend.util.JwtUtil;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
 	@Autowired
@@ -37,7 +40,7 @@ public class LoginController {
 		try {
 			
 			authenticationManager.authenticate(
-        			new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+        			new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(), authenticationRequest.getPassword())
         	);
 		}catch (BadCredentialsException bce) {
 			throw new ServiceException("[ERROR:BCE] login() ", bce);
@@ -45,11 +48,14 @@ public class LoginController {
             throw new ServiceException("[ERROR:E] login() ", e);
         }
 		
-		final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUserName());
+		
+		final UserDetailsDTO ud = myUserDetailsService.findUserByUsername(authenticationRequest.getUserName());
 		
 		final String jwt = jwtUtil.generateToken(userDetails);
+		final long tokenExpirationMilliSeconds = jwtUtil.extractExpiration(jwt).getTime();
 		
-		return ResponseEntity.ok(new AuthenticationResponse(jwt));
+		return ResponseEntity.ok(new AuthenticationResponse(ud.getUserName(), ud.getFullName(), ud.getEmail(), jwt, tokenExpirationMilliSeconds));
 		
     }
 	

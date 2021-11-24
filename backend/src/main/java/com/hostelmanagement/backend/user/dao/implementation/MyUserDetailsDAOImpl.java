@@ -77,7 +77,7 @@ public class MyUserDetailsDAOImpl implements MyUserDetailsDAO{
 			jdbcTemplate.update(QueryConstants.INSERT_NEW_USER, new PreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps) throws SQLException {
-                    ps.setString(1, authenticationRequest.getUsername());
+                    ps.setString(1, authenticationRequest.getUserName());
                     ps.setString(2, authenticationRequest.getPassword());
                     ps.setString(3, authenticationRequest.getFullName());
                     ps.setString(4, authenticationRequest.getEmail());

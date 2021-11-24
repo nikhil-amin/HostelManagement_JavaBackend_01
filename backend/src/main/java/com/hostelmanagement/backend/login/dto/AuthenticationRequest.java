@@ -2,7 +2,7 @@ package com.hostelmanagement.backend.login.dto;
 
 public class AuthenticationRequest {
 
-		private String username;
+		private String userName;
 		private String password;
 		private String fullName;
 		private String email;
@@ -11,25 +11,25 @@ public class AuthenticationRequest {
 		}
 
 		// login
-		public AuthenticationRequest(String username, String password) {
-			this.username = username;
+		public AuthenticationRequest(String userName, String password) {
+			this.userName = userName;
 			this.password = password;
 		}
 		
 		// register
-		public AuthenticationRequest(String username, String password, String fullName, String email) {
-			this.username = username;
+		public AuthenticationRequest(String userName, String password, String fullName, String email) {
+			this.userName = userName;
 			this.password = password;
 			this.fullName = fullName;
 			this.email = email;
 		}
 
-		public String getUsername() {
-			return username;
+		public String getUserName() {
+			return userName;
 		}
 		
-		public void setUsername(String username) {
-			this.username = username;
+		public void setUserName(String userName) {
+			this.userName = userName;
 		}
 		
 		public String getPassword() {
