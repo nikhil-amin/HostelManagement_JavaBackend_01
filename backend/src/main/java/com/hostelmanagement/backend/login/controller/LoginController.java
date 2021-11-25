@@ -38,7 +38,6 @@ public class LoginController {
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) throws ServiceException {
         
 		try {
-			System.out.println("LOGIN CALLED "+authenticationRequest);
 			authenticationManager.authenticate(
         			new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(), authenticationRequest.getPassword())
         	);
